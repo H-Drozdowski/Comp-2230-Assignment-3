@@ -31,7 +31,8 @@ function renderQuestion(currentState){
             buttonsNextStateList = [
                 "testRoom1",
                 "testRoom2"
-            ]                    
+            ]
+            break;                    
         }
 
         case "testRoom1" : {
@@ -43,7 +44,8 @@ function renderQuestion(currentState){
             buttonsNextStateList = [
                 "option-1",
                 "option-2"
-            ]      
+            ]
+            break;      
         }
 
         case "testRoom2" : {
@@ -55,20 +57,38 @@ function renderQuestion(currentState){
             buttonsNextStateList = [
                 "option-1",
                 "option-2"
-            ]      
+            ]
+            break;      
         }
 
     };
 
     // Set the games contents to the current state.
     currentQuestion.textContent = stateText
+
+    // removes all buttons before adding the new ones for the current state.
+    clearButtons()
+
+    // add the buttons to the game based on current state.
+    for (let num in buttonsTextList){
+        addAnswerButton(buttonsTextList[num], buttonsNextStateList[num])
+    }
+
 };
 
+// clears the buttons so the new ones can be added when changing states.
+function clearButtons(){
+    
+    // getting a list of all buttons
+    buttons = document.getElementsByTagName("button")
+
+    // removing each button.
+    for (let button of buttons){
+        document.removeChild(button)
+    }
+}
 
 function addAnswerButton(buttonText, nextState){
-    // button text and the next state when button is clicked.
-    let text = buttonText
-    let state = nextState
 
     // ul containing the buttons.
     let answerButtonUl = document.getElementById("answers")
@@ -77,9 +97,17 @@ function addAnswerButton(buttonText, nextState){
     let newAnswerButtonLi = document.createElement("li")
     let newAnswerButton = document.createElement("button")
 
+    // setting the buttons contents
+    newAnswerButton.textContent = buttonText
+
     // Adding new buttons to the game based on state.
     answerButtonUl.insertBefore(newAnswerButtonLi, answerButtonUl.firstChild)
     newAnswerButtonLi.insertBefore(newAnswerButton, newAnswerButtonLi.firstChild)
+
+    newAnswerButton.addEventListener("click", () =>{
+        currentState = nextState
+        renderQuestion(currentState)
+    })
 }
 
 // Code inside executed at runtime.
