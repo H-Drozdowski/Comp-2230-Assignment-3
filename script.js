@@ -16,26 +16,73 @@ function renderQuestion(currentState){
 
     // Variables that are set to reflect the current state.
     let stateText = "None"
-    let button1Text = "None"
-    let button1NextState = "None"
-    let button2Text = "None"
-    let button2NextState = "None"
+    let buttonsTextList = []
+    let buttonsNextStateList = []
 
     switch(currentState){
 
         case "startingState":{
             stateText = "The current state is start!"
-            button1Text = "option1"
-            button2Text = "option2"                        
+
+            buttonsTextList = [
+                "test room 1",
+                "test room 2"
+            ]   
+            buttonsNextStateList = [
+                "testRoom1",
+                "testRoom2"
+            ]                    
         }
+
+        case "testRoom1" : {
+            stateText = "The current state is testRoom1!"
+            buttonsTextList = [
+                "option 1",
+                "option 2"
+            ]   
+            buttonsNextStateList = [
+                "option-1",
+                "option-2"
+            ]      
+        }
+
+        case "testRoom2" : {
+            stateText = "The current state is testRoom2!"
+            buttonsTextList = [
+                "option 1",
+                "option 2"
+            ]   
+            buttonsNextStateList = [
+                "option-1",
+                "option-2"
+            ]      
+        }
+
     };
 
     // Set the games contents to the current state.
-    button1.textContent = button1Text
-    button2.textContent = button2Text
     currentQuestion.textContent = stateText
 };
 
+
+function addAnswerButton(buttonText, nextState){
+    // button text and the next state when button is clicked.
+    let text = buttonText
+    let state = nextState
+
+    // ul containing the buttons.
+    let answerButtonUl = document.getElementById("answers")
+
+    // new elements to be added.
+    let newAnswerButtonLi = document.createElement("li")
+    let newAnswerButton = document.createElement("button")
+
+    // Adding new buttons to the game based on state.
+    answerButtonUl.insertBefore(newAnswerButtonLi, answerButtonUl.firstChild)
+    newAnswerButtonLi.insertBefore(newAnswerButton, newAnswerButtonLi.firstChild)
+}
+
+// Code inside executed at runtime.
 document.addEventListener("DOMContentLoaded", (event) => {
     renderQuestion(currentState)
 });
