@@ -5,7 +5,7 @@ Chose your own adventure game
 */
 
 // Contains the current state of the story.
-let currentState = "startingState"
+let currentState = "outsideDungeon"
 
 function renderQuestion(currentState){
     
@@ -21,46 +21,143 @@ function renderQuestion(currentState){
 
     switch(currentState){
 
-        case "startingState":{
-            stateText = "The current state is start!"
-
+        case "outsideDungeon":{
+            stateText = "You stand outside the dungeon doors."
             buttonsTextList = [
-                "test room 1",
-                "test room 2"
+                "Open the door.",
             ]   
             buttonsNextStateList = [
-                "testRoom1",
-                "testRoom2"
+                "dungeonHall",
             ]
             break;                    
         }
 
-        case "testRoom1" : {
-            stateText = "The current state is testRoom1!"
+        case "dungeonHall" : {
+            stateText = "You stand in a large box shaped room with stone brick walls. " +
+                        "There are three doors in front of you. One door is straight ahead, " +
+                        "one is on the left wall, and one is on the right wall."
             buttonsTextList = [
-                "option 1",
-                "option 2"
+                "Enter the door straight ahead.",
+                "Enter the door on the left.",
+                "Enter the door on the right."
             ]   
             buttonsNextStateList = [
-                "option-1",
-                "option-2"
+                "longHallway",
+                "spiderRoom",
+                "statueRoom"
             ]
             break;      
         }
 
-        case "testRoom2" : {
-            stateText = "The current state is testRoom2!"
+        case "spiderRoom" : {
+            stateText = "You open the door, light fills the room just enough to reveal a huge spider web, " +
+                        "you see multiple glowing eyes reflect the light being cast in the darkness of the room."
             buttonsTextList = [
-                "option 1",
-                "option 2"
+                "Fight the spiders.",
+                "Exit the room."
             ]   
             buttonsNextStateList = [
-                "option-1",
-                "option-2"
+                "spidersAttackRoom",
+                "dungeonHall"
             ]
-            break;      
+            break;
         }
 
+        case "spidersAttackRoom" : {
+            stateText = "The spiders surround you, you were unable to escape. Game Over!"
+            buttonsTextList = [
+                "Game Over."
+            ]
+            buttonsNextStateList = [
+                "gameOver"
+            ]
+            break;
+        }
+
+        case "statueRoom" : {
+            stateText = "You open the door to find a room filled with hundreds of old humanoid statues. " +
+                        "They are all facing towards the centre of the room towards a small podium with a gemstone " +
+                        "resting atop it."
+            buttonsTextList = [
+                "Steal the gemstone.",
+                "Exit the room."
+            ]
+            buttonsNextStateList = [
+                "statuesAttackRoom",
+                "dungeonHall"
+            ]
+            break;
+        }
+
+        case "statuesAttackRoom" : {
+            stateText = "You picked up the gem from the podium, the statues ran at you and tackled you to the " +
+                        "ground. Game Over!"
+            buttonsTextList = [
+                "Game Over."
+            ]
+            buttonsNextStateList = [
+                "gameOver"
+            ]
+            break;
+        }
+
+        case "longHallway" : {
+            stateText = "You open the door to find a long dark hallway. Attached to the right " +
+                        "side of the wall there is a small wooden lever."
+            buttonsTextList = [
+                "Pull the wooden lever.",
+                "Feel the stone brick walls for a secret button."
+            ]
+            buttonsNextStateList = [
+                "pitFallTrap",
+                "hiddenDoorRoom"
+            ]
+            break;
+        }
+
+        case "hiddenDoorRoom" : {
+            stateText = "A secret door at the end of the dark hallway slides open revealing a treasure chest!"
+            buttonsTextList = [
+                "Collect your reward!"
+            ]
+            buttonsNextStateList = [
+                "winRoom"
+            ]
+            break;
+        }
+
+        case "pitFallTrap" : {
+            stateText = "The floor caves in from under you! It was a trap! Game Over."
+            buttonsTextList = [
+                "Game Over."
+            ]
+            buttonsNextStateList = [
+                "gameOver"
+            ]
+            break;
+        }
+
+        case "winRoom" : {
+            stateText = "You found the hidden treasure! You Win!"
+            buttonsTextList = [
+                "Restart?"
+            ]
+            buttonsNextStateList = [
+                "outsideDungeon"
+            ]
+            break;
+        }
+
+        case "gameOver" : {
+            stateText = "Game Over!"
+            buttonsTextList = [
+                "Restart?"
+            ]
+            buttonsNextStateList = [
+                "outsideDungeon"
+            ]
+            break;
+        }
     };
 
     // Set the games contents to the current state.
