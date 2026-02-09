@@ -78,13 +78,18 @@ function renderQuestion(currentState){
 
 // clears the buttons so the new ones can be added when changing states.
 function clearButtons(){
-    
-    // getting a list of all buttons
-    buttons = document.getElementsByTagName("button")
 
-    // removing each button.
-    for (let button of buttons){
-        document.removeChild(button)
+    // gets a list of all li holding buttons
+    let buttonsLiList = document.getElementsByClassName("answer-button-li")
+    
+    // the ul holding the li's
+    let buttonsUl = document.getElementById("answers")
+
+    // removes each li containing the buttons from the website.
+    while (buttonsLiList.length > 0){
+
+        console.log(buttonsLiList[0])
+        buttonsUl.removeChild(buttonsLiList[0])
     }
 }
 
@@ -103,6 +108,8 @@ function addAnswerButton(buttonText, nextState){
     // Adding new buttons to the game based on state.
     answerButtonUl.insertBefore(newAnswerButtonLi, answerButtonUl.firstChild)
     newAnswerButtonLi.insertBefore(newAnswerButton, newAnswerButtonLi.firstChild)
+
+    newAnswerButtonLi.className = "answer-button-li"
 
     newAnswerButton.addEventListener("click", () =>{
         currentState = nextState
