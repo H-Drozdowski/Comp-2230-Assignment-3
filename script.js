@@ -33,9 +33,9 @@ function renderQuestion(currentState){
         }
 
         case "dungeonHall" : {
-            stateText = "You stand in a large box shaped room with stone brick walls. " +
-                        "There are three doors in front of you. One door is straight ahead, " +
-                        "one is on the left wall, and one is on the right wall."
+            stateText = "You stand in a large dimly lit box shaped room with stone brick walls. " +
+                        "You raise your torch to light up the room in front of you. There are three "+
+                         "doors one door is straight ahead, one is on the left wall, and one is on the right wall."
             buttonsTextList = [
                 "Enter the door straight ahead.",
                 "Enter the door on the left.",
