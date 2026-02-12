@@ -9,10 +9,8 @@ let currentState = "outsideDungeon"
 
 function renderQuestion(currentState){
     
-    // buttons
+    // Text and image display
     const currentQuestion = document.getElementById("question")
-    const button1 = document.getElementById("button-1")
-    const button2 = document.getElementById("button-2")
     const roomImage = document.getElementById("room-image")
 
     // Variables that are set to reflect the current state.
@@ -105,8 +103,8 @@ function renderQuestion(currentState){
         case "statuesAttackRoom" : {
             stateText = "You picked up the gem from the podium, the statues ran at you and tackled you to the " +
                         "ground. Game Over!"
-            currentImage = ""
-            imageAltText = ""
+            currentImage = "images/gameOver.png"
+            imageAltText = "An image displaying the words Game Over in a pixelated font."
             buttonsTextList = [
                 "Game Over."
             ]
